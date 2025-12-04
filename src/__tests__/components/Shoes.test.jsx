@@ -8,9 +8,11 @@ describe("Shoes component", () => {
 
     it("should be able to change shoe size for each player (AC2)", async () => {});
 
-    it("should get an error message if user tries to complete booking without state shoe size for each player who'd booked shoes(AC4)", async () => {});
+    it("should show error 'Alla skor måste vara ifyllda' when shoe size field is empty(AC4)", async () => {});
 
-    it("should get an error message if number of persons and shoes doesn't match (AC5)", async () => {});
+    it("should get an error 'Antalet skor måste stämma överens med antal spelare'  when more shoes than players (AC5)", async () => {});
+   
+    it("should get an error 'Antalet skor måste stämma överens med antal spelare'  when fewer shoes than players (AC5)", async () => {});
 
     it("should a overview of choosen shoe sizes before user completes booking (AC6)", async () => {});
   });
