@@ -29,10 +29,10 @@ describe("Booking", () => {
 
     it("should calculate and display total price (120kr/person + 100kr/lane) (AC3)", async () => {});
 
-    it("should display price breakdown showing players and lanes separately (AC4)", async () => {});
+    it("should display total price and include players and lanes (AC4)", async () => {});
   });
 
   describe("US5: As a user I want to be able to navigate between the booking view and the confirmation view ", () => {
-    it("should navigate from booking view to confirmation view when the booking is done (AC1)", () => {});
+    it("should navigate from booking view to confirmation view after successful booking (AC1)", () => {});
   });
 });
