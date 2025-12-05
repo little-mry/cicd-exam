@@ -13,6 +13,7 @@ export const handlers = [
         shoes: ["36", "36"],
         price: 340,
         bookingId: "STR1234ABC",
+        active: true,
       },
     });
   }),
@@ -27,7 +28,8 @@ export const createBookingResponse = (overrides = {}) => {
       shoes: ["36", "36"],
       price: 340,
       bookingId: "STR1234ABC",
-      ...overrides ,
+      active: true,
+      ...overrides,
     },
   });
 };
