@@ -10,10 +10,11 @@ export default defineConfig({
     setupFiles: "./src/test/setup.js",
     coverage: {
       provider: "v8",
-      all: true, 
-      include: ["src/**/*.{js,jsx}"], 
+      all: true,
+      include: ["src/**/*.{js,jsx}"],
       exclude: ["src/**/*.test.{js,jsx}", "src/**/*.scss"],
-      threshold: {
+      thresholds: {
+        perFile: false,
         lines: 90,
         functions: 90,
         branches: 90,
