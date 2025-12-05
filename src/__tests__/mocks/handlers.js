@@ -18,7 +18,7 @@ export const handlers = [
   }),
 ];
 
-export const createBookingResponse = (override = {}) => {
+export const createBookingResponse = (overrides = {}) => {
   return HttpResponse.json({
     bookingDetails: {
       when: "2025-12-20T20:00",
@@ -27,7 +27,7 @@ export const createBookingResponse = (override = {}) => {
       shoes: ["36", "36"],
       price: 340,
       bookingId: "STR1234ABC",
-      ...overrides,
+      ...overrides ,
     },
   });
 };

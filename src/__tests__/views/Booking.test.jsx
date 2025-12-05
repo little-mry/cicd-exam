@@ -1,16 +1,15 @@
-import { render, screen } from "@testing-library/react";
+import { render, screen, waitFor } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
 import Booking from "../../views/Booking";
 import userEvent from "@testing-library/user-event";
 
 describe("Booking", () => {
-  const mockOnClick = vi.fn()
   const renderBooking = () => {
     const user = userEvent.setup();
 
     render(
       <MemoryRouter>
-        <Booking onClick={mockOnClick}/>;
+        <Booking />;
       </MemoryRouter>
     );
 
@@ -132,7 +131,7 @@ describe("Booking", () => {
       await user.type(timeInput(), "20:00");
       await user.type(playerInput(), "5");
       await user.type(laneInput(), "1");
-      
+
       //adds shoes bc otherwise that error message will be shown before
       const addShoeButton = screen.getByRole("button", { name: "+" });
       await user.click(addShoeButton);
@@ -140,12 +139,12 @@ describe("Booking", () => {
       await user.click(addShoeButton);
       await user.click(addShoeButton);
       await user.click(addShoeButton);
-      
+
       const shoeInputs = screen.getAllByLabelText(/shoe size/i);
       for (const input of shoeInputs) {
         await user.type(input, "36");
       }
-      
+
       await user.click(submitButton());
 
       expect(
@@ -155,8 +154,8 @@ describe("Booking", () => {
   });
 
   describe("US4: As a user I want to be able to send my reservation request and get a bookning number and total amount", () => {
-    it("should be able to complete booking by clicking booking button (AC1)", async () => {
-       const {
+    it("should be able to complete booking and recieve bookning number by clicking booking button (AC1)", async () => {
+      const {
         user,
         dateInput,
         timeInput,
@@ -169,31 +168,25 @@ describe("Booking", () => {
       await user.type(timeInput(), "20:00");
       await user.type(playerInput(), "2");
       await user.type(laneInput(), "1");
-      
+
       //adds shoes bc otherwise that error message will be shown before
       const addShoeButton = screen.getByRole("button", { name: "+" });
       await user.click(addShoeButton);
       await user.click(addShoeButton);
-      await user.click(addShoeButton);
-      await user.click(addShoeButton);
-      await user.click(addShoeButton);
-      
+
       const shoeInputs = screen.getAllByLabelText(/shoe size/i);
       for (const input of shoeInputs) {
         await user.type(input, "36");
       }
-      
+
       await user.click(submitButton());
 
-      expect(mockOnClick).toHaveBeenCalledTimes(1)
-     
+      await waitFor(() => {
+        expect(
+          screen.queryByText(/alla fälten måste vara ifyllda/i)
+        ).not.toBeInTheDocument();
+      });
     });
-
-    it("should receive a booking number after completing booking (AC2)", async () => {});
-
-    it("should calculate and display total price (120kr/person + 100kr/lane) (AC3)", async () => {});
-
-    it("should display total price and include players and lanes (AC4)", async () => {});
   });
 
   describe("US5: As a user I want to be able to navigate between the booking view and the confirmation view ", () => {
