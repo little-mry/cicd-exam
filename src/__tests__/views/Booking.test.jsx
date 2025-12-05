@@ -3,8 +3,22 @@ import Booking from "../../views/Booking";
 import userEvent from "@testing-library/user-event";
 
 describe("Booking", () => {
+  //
+const renderBookning = () => {
+  const user = userEvent.setup()
+  render(<Booking />)
+
+  return{
+
+  }
+}
+
   describe("US1: As a user I want to be able to book a date and time, and state number of players so I can reserve one or more lanes", () => {
-    it("should be able to choose date and time (AC1)", async () => {});
+    it("should be able to choose date and time (AC1)", async () => {
+
+
+
+    });
 
     it("should be able to choose total number of players (minimum one)(AC2)", async () => {});
 
